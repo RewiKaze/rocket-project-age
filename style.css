@@ -44,6 +44,12 @@ button {
 .button-wrapper {
     margin-top: 50px;
 }
+.button-bottom {
+    position: absolute;
+    bottom: 10%;
+    left:38%;
+}
+
 
 .button {
     position: relative;
@@ -84,9 +90,6 @@ button {
     color: black;
 }
 
-.buttom-button {
-    bottom: 5%;
-}
 
 .button:hover::before {
     transform: scaleX(1);
