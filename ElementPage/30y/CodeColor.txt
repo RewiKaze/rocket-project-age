@@ -1,0 +1,2 @@
+Gradient : #a15558, #3b4377
+Title :#e5777b, #d393e3
