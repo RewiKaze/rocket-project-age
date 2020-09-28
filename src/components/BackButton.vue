@@ -21,6 +21,6 @@
 
 <script>
 export default {
-  name: "backButton"
+  name: "backButton",
 };
 </script>
