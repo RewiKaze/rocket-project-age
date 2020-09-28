@@ -1,6 +1,6 @@
 <template>
   <div class="elon-musk">
-    <b-container>
+    <b-container fluid>
       <img
         src="../assets/ElonMusk/Linemoney.png"
         width="100%"
@@ -20,6 +20,11 @@
           </p>
         </div>
       </div>
+      <back v-on:click.native="back"></back>
+      <!-- <b-icon-house-fill
+        class="d-flex mx-auto bottom"
+        scale="4"
+      ></b-icon-house-fill> -->
       <img
         class="fixed-bottom img-fluid"
         src="../assets/ElonMusk/money.png"
@@ -29,8 +34,16 @@
   </div>
 </template>
 <script>
+import back from "@/components/BackButton.vue";
+import router from "@/router";
 export default {
-  name: "elon"
+  name: "elon",
+  components: { back },
+  methods: {
+    back() {
+      router.push("/");
+    }
+  }
 };
 </script>
 <style>
@@ -55,6 +68,7 @@ export default {
 .elon-img {
   float: left;
   height: 60vh;
+  margin-right: 3%;
 }
 .text-content {
   float: right;
@@ -63,12 +77,16 @@ export default {
   margin-right: 3%;
 }
 .mt-6 {
-  margin-top: 25%;
+  margin-top: 10%;
+  margin-left: 10%;
+  margin-right: 10%;
+  margin-bottom: 5%;
 }
 .header-name {
   font-size: 5em;
 }
 p {
+  margin-top: 3%;
   font-size: 1.5rem;
 }
 </style>
