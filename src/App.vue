@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <vue-page-transition style="height:100vh">
+    <vue-page-transition style="height: 100vh">
       <!-- <transition name="fade"> -->
       <router-view />
       <!-- </transition> -->
@@ -21,7 +21,7 @@ export default {
   /* --overlay-bg : color  เปลี่ยนสี transition*/
   --transition-duration: 1.5s;
 }
-@keyframes gradient {
+/* @keyframes gradient {
   0% {
     background-position: 0% 50%;
   }
@@ -31,5 +31,5 @@ export default {
   100% {
     background-position: 0% 50%;
   }
-}
+} */
 </style>

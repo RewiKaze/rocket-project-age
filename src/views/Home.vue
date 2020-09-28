@@ -39,8 +39,8 @@ export default {
     check() {
       if (this.numAge > 0 && this.numAge <= 100) {
         this.inputStatus = null;
-        if (this.numAge > 0 && this.numAge <= 5) {
-          router.push("/cookie"); //Go to page
+        if (this.numAge > 19 && this.numAge <= 30) {
+          router.push("/elon"); //Go to page
         } else {
           router.push("/template");
         }
@@ -67,6 +67,6 @@ export default {
   );
   color: #fff;
   background-size: 400% 400%;
-  animation: gradient 3.5s ease infinite;
+  /* animation: gradient 3.5s ease infinite; */
 }
 </style>

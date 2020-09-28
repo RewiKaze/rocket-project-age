@@ -1,6 +1,5 @@
 <template>
   <div class="cookie">
-    Hello
     <cButton nameButton="Back" v-on:click.native="back"></cButton>
   </div>
 </template>
@@ -29,6 +28,6 @@ export default {
   background-size: 400% 400%;
   width: 100%;
   height: 100%;
-  animation: gradient 3.5s ease infinite;
+  /* animation: gradient 3.5s ease infinite; */
 }
 </style>

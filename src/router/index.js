@@ -3,6 +3,7 @@ import VueRouter from "vue-router";
 import home from "@/views/Home.vue";
 import cookie from "@/views/Cookie.vue";
 import template from "@/views/Template.vue";
+import elon from "@/views/ElonMusk.vue";
 Vue.use(VueRouter);
 
 const routes = [
@@ -10,20 +11,25 @@ const routes = [
     path: "/",
     // name: "Home",
     component: home,
-    meta: { transition: "overlay-right" }
+    meta: { transition: "overlay-right" },
   },
   {
     path: "/cookie",
     // name: "Cookie",
     component: cookie,
-    meta: { transition: "overlay-right" }
+    meta: { transition: "overlay-right" },
   },
   {
     path: "/template",
-    name: "template",
+    // name: "template",
     component: template,
-    meta: { transition: "overlay-right" }
-  }
+    meta: { transition: "overlay-right" },
+  },
+  {
+    path: "/elon",
+    component: elon,
+    meta: { transition: "overlay-right" },
+  },
   // {
   //   path: "/about",
   //   name: "About",
@@ -36,7 +42,7 @@ const routes = [
 ];
 
 const router = new VueRouter({
-  routes
+  routes,
 });
 
 export default router;

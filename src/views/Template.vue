@@ -14,6 +14,6 @@ export default {
   background-size: 400% 400%;
   width: 100vw;
   height: 100vh;
-  animation: gradient 3.5s ease infinite;
+  /* animation: gradient 3.5s ease infinite; */
 }
 </style>
