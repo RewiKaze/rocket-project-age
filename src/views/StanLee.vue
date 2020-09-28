@@ -3,8 +3,8 @@
     <img src="../assets/StanLee/Nongif-lee.png" class="stan-img" />
     <img src="../assets/StanLee/Comics.png" class="side" />
     <div class="content">
-      <h1>When Stan Lee</h1>
-      <h2>39 yaer old</h2>
+      <h1 class="gradient">When Stan Lee</h1>
+      <h2 class="gradient">39 yaer old</h2>
       <p>
         เริ่มด้วยต้นแบบนักเขียนคอมมิคบุ๊คชื่อดังอย่าง Stan Lee
         เขาเข้าวงการคอมมิคบุ๊คด้วยอายุเพียง 17
@@ -50,13 +50,13 @@ p {
   text-indent: 10%;
   color: white;
 }
-h1 {
+h1.gradient {
   font-size: 72px;
   background: -webkit-linear-gradient(#e5777b, #d393e3);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
-h2 {
+.gradient {
   background: -webkit-linear-gradient(#e5777b, #d393e3);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
