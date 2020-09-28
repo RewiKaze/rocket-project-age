@@ -47,6 +47,7 @@
   right: 0;
 }
 p {
+  text-indent: 10%;
   color: white;
 }
 h1 {
