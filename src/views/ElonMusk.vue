@@ -20,7 +20,7 @@
           </p>
         </div>
       </div>
-      <back v-on:click.native="back"></back>
+      <navControl v-on:click.native="back"></navControl>
       <!-- <b-icon-house-fill
         class="d-flex mx-auto bottom"
         scale="4"
@@ -34,16 +34,16 @@
   </div>
 </template>
 <script>
-import back from "@/components/BackButton.vue";
+import navTab from "@/components/NavTab.vue";
 import router from "@/router";
 export default {
   name: "elon",
-  components: { back },
+  components: { navControl: navTab },
   methods: {
     back() {
       router.push("/");
-    },
-  },
+    }
+  }
 };
 </script>
 <style>

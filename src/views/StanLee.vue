@@ -1,7 +1,10 @@
 <template>
   <div class="stan">
-    <img src="../assets/StanLee/Nongif-lee.png" class="stan-img" />
-    <img src="../assets/StanLee/Comics.png" class="side" />
+    <img
+      src="../assets/StanLee/Nongif-lee.png"
+      class="stan-img img-fluid fade-in"
+    />
+    <img src="../assets/StanLee/Comics.png" class="side img-fluid slide" />
     <div class="content">
       <h1 class="gradient">When Stan Lee</h1>
       <h2 class="gradient">39 yaer old</h2>
@@ -13,7 +16,7 @@
         หนังสือการ์ตูนของเขาก็มีชื่อเสียงขึ้นมา
       </p>
     </div>
-    <back v-on:click.native="back"></back>
+    <navControl v-on:click.native="back"></navControl>
   </div>
 </template>
 <style>
@@ -24,6 +27,7 @@
   z-index: 2;
 }
 .stan {
+  overflow: hidden;
   color: black;
   background: linear-gradient(
     315deg,
@@ -42,7 +46,7 @@
   height: 80%;
 }
 .side {
-  position: absolute;
+  position: fixed;
   bottom: 0;
   right: 0;
 }
@@ -61,17 +65,50 @@ h1.gradient {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
+.fade-in {
+  animation: fade-in-left 0.6s cubic-bezier(0.39, 0.575, 0.565, 1) both;
+  animation-delay: 0.5s;
+}
+.slide {
+  overflow-x: hidden;
+  overflow-y: hidden;
+  animation: fade-in-right 0.6s cubic-bezier(0.39, 0.575, 0.565, 1) both;
+  animation-delay: 0.5s;
+}
+
+@keyframes fade-in-right {
+  0% {
+    transform: translateX(50px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+@keyframes fade-in-left {
+  0% {
+    -webkit-transform: translateX(-50px);
+    transform: translateX(-50px);
+    opacity: 0;
+  }
+  100% {
+    -webkit-transform: translateX(0);
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
 </style>
 <script>
-import back from "@/components/BackButton.vue";
+import navTab from "@/components/NavTab.vue";
 import router from "@/router";
 export default {
   name: "stan",
-  components: { back },
+  components: { navControl: navTab },
   methods: {
     back() {
       router.push("/");
-    },
-  },
+    }
+  }
 };
 </script>
