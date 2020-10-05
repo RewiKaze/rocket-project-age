@@ -21,6 +21,6 @@
 
 <script>
 export default {
-  name: "backButton"
+  name: "navTab"
 };
 </script>

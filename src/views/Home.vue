@@ -33,28 +33,30 @@ import router from "@/router";
 export default {
   name: "Home",
   components: {
-    cButton: Button
+    cButton: Button,
   },
   methods: {
     check() {
       if (this.numAge > 0 && this.numAge <= 100) {
         this.inputStatus = null;
-        if (this.numAge > 19 && this.numAge <= 30) {
+        if (this.numAge >= 20 && this.numAge <= 25) {
           router.push("/elon"); //Go to page
+        } else if (this.numAge > 25 && this.numAge <= 30) {
+          router.push("/stan");
         } else {
           router.push("/template");
         }
       } else {
         this.inputStatus = false;
       }
-    }
+    },
   },
   data() {
     return {
       numAge: null,
-      inputStatus: null
+      inputStatus: null,
     };
-  }
+  },
 };
 </script>
 <style>

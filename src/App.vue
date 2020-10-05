@@ -15,11 +15,16 @@ export default {
 </script>
 <style>
 #app {
+  overflow: hidden;
   height: 100vh;
 }
 :root {
-  /* --overlay-bg : color  เปลี่ยนสี transition*/
-  --transition-duration: 1.5s;
+  --overlay-bg: linear-gradient(
+    303deg,
+    rgba(77, 27, 123, 1) 0%,
+    rgba(54, 59, 116, 1) 100%
+  ) !important;
+  /* --transition-duration: 0.35s; */
   z-index: 10;
 }
 .overlay-right[data-v-4c22b934] {

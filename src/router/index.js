@@ -4,6 +4,7 @@ import home from "@/views/Home.vue";
 import cookie from "@/views/Cookie.vue";
 import template from "@/views/Template.vue";
 import elon from "@/views/ElonMusk.vue";
+import stan from "@/views/StanLee.vue";
 Vue.use(VueRouter);
 
 const routes = [
@@ -28,6 +29,11 @@ const routes = [
   {
     path: "/elon",
     component: elon,
+    meta: { transition: "overlay-right" },
+  },
+  {
+    path: "/stan",
+    component: stan,
     meta: { transition: "overlay-right" },
   },
   // {
