@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Rocket</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
+        integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+</head>
+
+<body>
+    <div class="container-fluid">
+        <h3>When</h3>
+        <h2 id="name"></h2>
+        <h3 id="age"></h3>
+        <p id="title"></p>
+        <div class="row">
+            <div class="col-3 align-self-end" id="dicutl"></div>
+            <div class="col-6 text-center">
+                <p id="data"></p>
+            </div>
+            <div class="col-3 align-self-end" id="dicutr"></div>
+        </div>
+        <button onclick="pre()">Pre</button> <button onclick="next()">Next</button>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.min.js">
+        let requestURL = 'data.json';
+        let request = new XMLHttpRequest();
+        request.onreadystatechange = function () {
+            if (request.readyState == 4 && request.status == 200) {
+                dataReportStatus(JSON.parse(request.responseText));
+            }
+        };
+        request.open("GET", requestURL, true);
+        request.send();
+
+        var i = 0;
+        function pre() {
+            if (i > 0) {
+                i -= 1;
+                dataReportStatus(JSON.parse(request.responseText));
+                console.log(i);
+            }
+        }
+
+        function next() {
+            i += 1;
+            dataReportStatus(JSON.parse(request.responseText));
+            console.log(i);
+        }
+        function dataReportStatus(data) {
+
+
+
+            let name = document.getElementById("name");
+            let age = document.getElementById("age");
+            let title = document.getElementById("title");
+            let about = document.getElementById("data");
+            let dicutl = document.getElementById("dicutl");
+            let dicutr = document.getElementById("dicutr");
+            name.innerHTML = data[i].name;
+            age.innerHTML = data[i].id + " years old";
+            title.innerHTML = data[i].title;
+            about.innerHTML = data[i].description;
+            if (data[i].status == "r") {
+                dicutr.innerHTML = "<img src='" + data[i].person + "' height='800px'>";
+                dicutl.innerHTML = "";
+            }
+            else if (data[i].status == "l") {
+                dicutl.innerHTML = "<img src='" + data[i].person + "' height='800px'>";
+                dicutr.innerHTML = "";
+            }
+
+            document.body.style.backgroundImage = data.color;
+
+
+        }
+    </script>
+
+</body>
+
+</html>
