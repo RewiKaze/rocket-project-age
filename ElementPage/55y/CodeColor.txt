@@ -1,2 +1,0 @@
-bg gradient :
-#a88054, #c6849b

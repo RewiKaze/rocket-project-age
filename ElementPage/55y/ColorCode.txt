@@ -1,0 +1,2 @@
+BG Color : 
+#97b7bc, #d68ea7
