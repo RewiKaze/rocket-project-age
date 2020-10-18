@@ -1,0 +1,2 @@
+Grandient : #57848f, #903232
+Title : #1a423c,#cf0e14

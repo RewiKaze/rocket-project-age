@@ -25,7 +25,8 @@
         <button onclick="pre()">Pre</button> <button onclick="next()">Next</button>
     </div>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.min.js">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.min.js"></script>
+    <script>
         let requestURL = 'data.json';
         let request = new XMLHttpRequest();
         request.onreadystatechange = function () {
@@ -51,8 +52,6 @@
             console.log(i);
         }
         function dataReportStatus(data) {
-
-
 
             let name = document.getElementById("name");
             let age = document.getElementById("age");
