@@ -1,41 +1,36 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 import home from "@/views/Home.vue";
-import cookie from "@/views/Cookie.vue";
-import template from "@/views/Template.vue";
-import elon from "@/views/ElonMusk.vue";
-import stan from "@/views/StanLee.vue";
+// import cookie from "@/views/Cookie.vue";
+// import template from "@/views/Template.vue";
+import agePage from "@/views/Age.vue";
+import content from "@/views/Content.vue"
 Vue.use(VueRouter);
 
 const routes = [
+  // {
+  //   path: "/",
+  //   redirect: {
+  //     name: "content"
+  //   },
+  // },
   {
     path: "/",
     // name: "Home",
     component: home,
-    meta: { transition: "overlay-right" },
+    meta: { transition: "fade" },
   },
   {
-    path: "/cookie",
-    // name: "Cookie",
-    component: cookie,
-    meta: { transition: "overlay-right" },
-  },
-  {
-    path: "/template",
+    path: "/age",
     // name: "template",
-    component: template,
-    meta: { transition: "overlay-right" },
+    component: agePage,
+    meta: { transition: "fade" },
   },
   {
-    path: "/elon",
-    component: elon,
-    meta: { transition: "overlay-right" },
-  },
-  {
-    path: "/stan",
-    component: stan,
-    meta: { transition: "overlay-right" },
-  },
+    path: "/content",
+    component: content,
+    meta: { transition: "overlay-right" }
+  }
   // {
   //   path: "/about",
   //   name: "About",
@@ -49,6 +44,7 @@ const routes = [
 
 const router = new VueRouter({
   routes,
+  mode: "history",
 });
 
 export default router;

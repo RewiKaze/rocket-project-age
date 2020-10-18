@@ -14,6 +14,7 @@ export default {
 };
 </script>
 <style>
+@import url("particle.css");
 #app {
   overflow: hidden;
   height: 100vh;
@@ -41,4 +42,7 @@ export default {
     background-position: 0% 50%;
   }
 } */
+body {
+  transition: 1s;
+}
 </style>
