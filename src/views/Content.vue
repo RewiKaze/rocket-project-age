@@ -2,7 +2,7 @@
   <div class="content">
     <b-container fluid>
       <div class="title">
-        When {{ dataPerson[start]["name"] }} {{ dataPerson[start]["id"] }} years
+        When {{ dataPerson[start]["name"] }} {{ dataPerson[start]["age"] }} years
         old. <br />{{ dataPerson[start]["title"] }}
       </div>
       <div class="row">
