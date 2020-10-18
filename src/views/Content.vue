@@ -2,11 +2,14 @@
   <div class="content">
     <b-container fluid>
       <div class="title">
-        When {{ dataPerson[start]["name"] }} {{ dataPerson[start]["age"] }} years
-        old. <br />{{ dataPerson[start]["title"] }}
+        When {{ dataPerson[start]["name"] }}
+        {{ dataPerson[start]["age"] }} years old. <br />{{
+          dataPerson[start]["title"]
+        }}
       </div>
       <div class="row">
         <div
+          v-if="dataPerson[start].status == 'l'"
           class="col-3 align-self-end h-100 slide-in-left"
           id="dicutl"
           style="z-index:3;"
@@ -14,7 +17,7 @@
           <!-- <img src="../assets/42y/Alan Rickman.png" width="500px" /> -->
           <img
             :src="require('@/assets/' + dataPerson[start].person)"
-            width="500px"
+            height="500px"
           />
           <!-- '{{ dataPerson[start].person }}' -->
         </div>
@@ -26,9 +29,15 @@
         </div>
         <div
           v-if="dataPerson[start].status == 'r'"
-          class="col-3 align-self-end"
+          class="col-3 align-self-end h-100 slide-in-right"
           id="dicutr"
-        ></div>
+          style="z-index:3;"
+        >
+          <img
+            :src="require('@/assets/' + dataPerson[start].person)"
+            height="500px"
+          />
+        </div>
       </div>
       <div class="row d-flex">
         <div class="col-12 mx-auto justify-items-center" style="z-index:30;">
@@ -36,12 +45,12 @@
           <button @click="change">Next</button>
         </div>
       </div>
-      <div class="bg">
+      <!-- <div class="bg">
         <img
           :src="require('@/assets/' + dataPerson[start].bg)"
           class="bg-img"
         />
-      </div>
+      </div> -->
     </b-container>
   </div>
 </template>
@@ -60,17 +69,6 @@ export default {
   created() {
     this.max = this.dataPerson.length;
     document.body.style.background = this.dataPerson[0].color;
-    let dicutl = document.getElementById("dicutl");
-    let dicutr = document.getElementById("dicutr");
-    if (this.dataPerson[this.start].status == "r") {
-      dicutr.innerHTML =
-        "<img src='" + this.dataPerson[this.start].person + "' height='800px'>";
-      dicutl.innerHTML = "";
-    } else if (this.dataPerson[this.start].status == "l") {
-      dicutl.innerHTML =
-        "<img src='" + this.dataPerson[this.start].person + "' height='800px'>";
-      dicutr.innerHTML = "";
-    }
   },
   methods: {
     change() {
@@ -78,6 +76,7 @@ export default {
         console.log(this.start);
         this.start++;
         document.body.style.background = this.dataPerson[this.start].color;
+
         document
           .getElementById("text-animation")
           .classList.remove("slide-in-bottom");
@@ -85,14 +84,15 @@ export default {
         document
           .getElementById("text-animation")
           .classList.add("slide-in-bottom");
-        let dicutl = document.getElementById("dicutl");
-        let dicutr = document.getElementById("dicutr");
-        dicutl.classList.remove("slide-in-left");
-        void dicutl.offsetWidth;
-        dicutl.classList.add("slide-in-left");
-        dicutr.classList.remove("slide-in-left");
-        void dicutr.offsetWidth;
-        dicutr.classList.add("slide-in-left");
+        if (this.dataPerson[this.start].status == "l") {
+          document.getElementById("dicutl").classList.remove("slide-in-left");
+          void document.getElementById("dicutl").offsetWidth;
+          document.getElementById("dicutl").classList.add("slide-in-left");
+        } else {
+          document.getElementById("dicutr").classList.remove("slide-in-right");
+          void document.getElementById("dicutr").offsetWidth;
+          document.getElementById("dicutr").classList.add("slide-in-right");
+        }
       }
     },
     back() {
@@ -106,14 +106,15 @@ export default {
         document
           .getElementById("text-animation")
           .classList.add("slide-in-bottom");
-        let dicutl = document.getElementById("dicutl");
-        let dicutr = document.getElementById("dicutr");
-        dicutl.classList.remove("slide-in-left");
-        void dicutl.offsetWidth;
-        dicutl.classList.add("slide-in-left");
-        dicutr.classList.remove("slide-in-left");
-        void dicutr.offsetWidth;
-        dicutr.classList.add("slide-in-left");
+        if (this.dataPerson[this.start].status == "l") {
+          document.getElementById("dicutl").classList.remove("slide-in-left");
+          void document.getElementById("dicutl").offsetWidth;
+          document.getElementById("dicutl").classList.add("slide-in-left");
+        } else {
+          document.getElementById("dicutr").classList.remove("slide-in-right");
+          void document.getElementById("dicutr").offsetWidth;
+          document.getElementById("dicutr").classList.add("slide-in-right");
+        }
       }
     }
   }
@@ -162,6 +163,19 @@ export default {
 @keyframes slide-in-left {
   0% {
     transform: translateX(-1000px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+.slide-in-right {
+  animation: slide-in-right 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+}
+@keyframes slide-in-right {
+  0% {
+    transform: translateX(1000px);
     opacity: 0;
   }
   100% {
