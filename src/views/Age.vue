@@ -54,8 +54,10 @@ export default {
       // } else {
       //   this.inputStatus = false;
       // }
-      if (this.numAge > 20) {
+      if (this.numAge > 5) {
         router.push({ path: "/content", query: { age: this.numAge } });
+      } else {
+        router.push("/wow");
       }
     }
   },

@@ -1,195 +1,320 @@
 <template>
-<div class="content">
-    <b-container fluid>
-        <div class="title">
-            When {{ dataPerson[start]["name"] }}
-            {{ dataPerson[start]["age"] }} years old. <br />{{
-          dataPerson[start]["title"]
-        }}
+  <div class="content">
+    <b-container fluid class="h-100 w-100">
+      <div class="title" id="title" style="margin-top:7%;">
+        When
+        <div class="d-inline text-blur-in" id="nameAnimation">
+          {{ dataPerson[start]["name"] }}
         </div>
-        <div class="row">
-            <div v-if="dataPerson[start].status == 'l'" class="col-3 align-self-end h-100 slide-in-left" id="dicutl" style="z-index:3;">
-                <!-- <img src="../assets/42y/Alan Rickman.png" width="500px" /> -->
-                <img :src="require('@/assets/' + dataPerson[start].person)" height="500px" />
-                <!-- '{{ dataPerson[start].person }}' -->
-            </div>
-            <div class="col text-center slide-in-bottom text-content" id="text-animation">
-                <p id="data">{{ dataPerson[start]["description"] }}</p>
-                <b-button v-b-modal.modal-scrollable>อ่านเพิ่มเติม</b-button>
-            </div>
-            <div v-if="dataPerson[start].status == 'r'" class="col-3 align-self-end h-100 slide-in-right" id="dicutr" style="z-index:3;">
-                <img :src="require('@/assets/' + dataPerson[start].person)" height="500px" />
-            </div>
+        <div class="d-inline text-blur-in" id="ageAnimation">
+          &nbsp;{{ dataPerson[start]["age"] }}
         </div>
-        <div class="row d-flex">
-            <div class="col-12 mx-auto justify-items-center" style="z-index:30;">
-                <button @click="back">Back</button>
-                <button @click="change">Next</button>
-            </div>
+        years old.
+        <br />
+        <div class="text-blur-in" id="titleAnimation">
+          {{ dataPerson[start]["title"] }}
         </div>
+      </div>
+      <div class="row mt-4">
+        <div
+          v-if="dataPerson[start].status == 'l'"
+          class="col-4 align-self-end h-100 slide-in-left"
+          id="dicutl"
+          style="z-index:3;"
+        >
+          <!-- <img src="../assets/42y/Alan Rickman.png" width="500px" /> -->
+          <img
+            :src="require('@/assets/' + dataPerson[start].person)"
+            height="500px"
+          />
+          <!-- '{{ dataPerson[start].person }}' -->
+        </div>
+        <div
+          class="col text-center slide-in-bottom text-content"
+          id="text-animation"
+        >
+          <p id="data">{{ dataPerson[start]["description"] }}</p>
+          <b-button v-b-modal.modal-scrollable>อ่านเพิ่มเติม</b-button>
+        </div>
+        <div
+          v-if="dataPerson[start].status == 'r'"
+          class="col-4 align-self-end h-100 slide-in-right"
+          id="dicutr"
+          style="z-index:3;"
+        >
+          <img
+            :src="require('@/assets/' + dataPerson[start].person)"
+            height="500px"
+          />
+        </div>
+      </div>
+      <div style="z-index:30;" class="navTab">
+        <b-icon-caret-left-fill
+          style="cursor:pointer"
+          scale="3"
+          @click="back"
+          v-if="start != 0"
+        ></b-icon-caret-left-fill>
+        <b-icon-house-door-fill
+          @click="home"
+          scale="3"
+          style="cursor:pointer"
+          class="mr-5 ml-5"
+        >
+        </b-icon-house-door-fill>
+        <b-icon-caret-right-fill
+          style="cursor:pointer"
+          scale="3"
+          @click="change"
+        ></b-icon-caret-right-fill>
+      </div>
 
-        <!-- pop-up -->
-        <b-modal id="modal-scrollable" scrollable title="Scrollable Content">
-            <p id="data">{{ dataPerson[start]["description"] }}</p>
-        </b-modal>
-        <!-- <div class="bg">
+      <!-- pop-up -->
+      <b-modal
+        id="modal-scrollable"
+        style="color:black"
+        ok-only
+        scrollable
+        title="Person Info"
+      >
+        <p id="data">{{ dataPerson[start]["description"] }}</p>
+      </b-modal>
+      <div class="bg">
         <img
           :src="require('@/assets/' + dataPerson[start].bg)"
           class="bg-img"
+          style="z-index:1"
         />
-      </div> -->
+      </div>
     </b-container>
-</div>
+  </div>
 </template>
 
 <script>
 import dataPerson from "../assets/data.json";
-import 'bootstrap/dist/css/bootstrap.css'
-import 'bootstrap-vue/dist/bootstrap-vue.css'
-
+import router from "@/router";
 export default {
-    name: "Content",
-    data() {
-        return {
-            dataPerson: dataPerson,
-            start: 0,
-            max: 0
-        };
-    },
-    created() {
-        this.max = this.dataPerson.length;
-        document.body.style.background = this.dataPerson[0].color;
-    },
-    methods: {
-        change() {
-            if (this.start < this.max) {
-                console.log(this.start);
-                this.start++;
-                document.body.style.background = this.dataPerson[this.start].color;
+  name: "Content",
+  data() {
+    return {
+      dataPerson: dataPerson,
+      start: 0,
+      max: 0,
+      limitAge: 0
+    };
+  },
+  created() {
+    this.max = this.dataPerson.length;
+    document.body.style.background = this.dataPerson[0].color;
+    this.limitAge = parseInt(this.$route.query.age);
+    document.body.style.color = "black";
+  },
+  methods: {
+    change() {
+      if (this.dataPerson[this.start + 1].age <= this.limitAge) {
+        if (this.start < this.max) {
+          //   console.log(this.start);
+          this.start++;
+          document.body.style.background = this.dataPerson[this.start].color;
 
-                document
-                    .getElementById("text-animation")
-                    .classList.remove("slide-in-bottom");
-                void document.getElementById("text-animation").offsetWidth;
-                document
-                    .getElementById("text-animation")
-                    .classList.add("slide-in-bottom");
-                if (this.dataPerson[this.start].status == "l") {
-                    document.getElementById("dicutl").classList.remove("slide-in-left");
-                    void document.getElementById("dicutl").offsetWidth;
-                    document.getElementById("dicutl").classList.add("slide-in-left");
-                } else {
-                    document.getElementById("dicutr").classList.remove("slide-in-right");
-                    void document.getElementById("dicutr").offsetWidth;
-                    document.getElementById("dicutr").classList.add("slide-in-right");
-                }
-            }
-        },
-        back() {
-            if (this.start > 0) {
-                this.start--;
-                document.body.style.background = this.dataPerson[this.start].color;
-                document
-                    .getElementById("text-animation")
-                    .classList.remove("slide-in-bottom");
-                void document.getElementById("text-animation").offsetWidth;
-                document
-                    .getElementById("text-animation")
-                    .classList.add("slide-in-bottom");
-                if (this.dataPerson[this.start].status == "l") {
-                    document.getElementById("dicutl").classList.remove("slide-in-left");
-                    void document.getElementById("dicutl").offsetWidth;
-                    document.getElementById("dicutl").classList.add("slide-in-left");
-                } else {
-                    document.getElementById("dicutr").classList.remove("slide-in-right");
-                    void document.getElementById("dicutr").offsetWidth;
-                    document.getElementById("dicutr").classList.add("slide-in-right");
-                }
-            }
+          document
+            .getElementById("text-animation")
+            .classList.remove("slide-in-bottom");
+          void document.getElementById("text-animation").offsetWidth;
+          document
+            .getElementById("text-animation")
+            .classList.add("slide-in-bottom");
+          if (this.start == 5) {
+            document.getElementById("title").style.color = "white";
+            document.getElementById("data").style.color = "white";
+            document.getElementById("modal-scrollable").style.color = "black";
+          } else {
+            document.body.style.color = "black";
+          }
+          if (this.dataPerson[this.start].status == "l") {
+            document.getElementById("dicutl").classList.remove("slide-in-left");
+            void document.getElementById("dicutl").offsetWidth;
+            document.getElementById("dicutl").classList.add("slide-in-left");
+          } else {
+            document
+              .getElementById("dicutr")
+              .classList.remove("slide-in-right");
+            void document.getElementById("dicutr").offsetWidth;
+            document.getElementById("dicutr").classList.add("slide-in-right");
+          }
+          document
+            .getElementById("nameAnimation")
+            .classList.remove("text-blur-in");
+          void document.getElementById("nameAnimation").offsetWidth;
+          document
+            .getElementById("nameAnimation")
+            .classList.add("text-blur-in");
+          document
+            .getElementById("ageAnimation")
+            .classList.remove("text-blur-in");
+          void document.getElementById("ageAnimation").offsetWidth;
+          document.getElementById("ageAnimation").classList.add("text-blur-in");
+          document
+            .getElementById("titleAnimation")
+            .classList.remove("text-blur-in");
+          void document.getElementById("titleAnimation").offsetWidth;
+          document
+            .getElementById("titleAnimation")
+            .classList.add("text-blur-in");
         }
+      } else {
+        router.push("/wow");
+      }
+    },
+    back() {
+      if (this.start > 0) {
+        this.start--;
+        if (this.start == 5) {
+          document.getElementById("title").style.color = "white";
+          document.getElementById("data").style.color = "white";
+          document.getElementById("modal-scrollable").style.color = "black";
+        } else {
+          document.body.style.color = "black";
+        }
+        document.body.style.background = this.dataPerson[this.start].color;
+        document
+          .getElementById("text-animation")
+          .classList.remove("slide-in-bottom");
+        void document.getElementById("text-animation").offsetWidth;
+        document
+          .getElementById("text-animation")
+          .classList.add("slide-in-bottom");
+        if (this.dataPerson[this.start].status == "l") {
+          document.getElementById("dicutl").classList.remove("slide-in-left");
+          void document.getElementById("dicutl").offsetWidth;
+          document.getElementById("dicutl").classList.add("slide-in-left");
+        } else {
+          document.getElementById("dicutr").classList.remove("slide-in-right");
+          void document.getElementById("dicutr").offsetWidth;
+          document.getElementById("dicutr").classList.add("slide-in-right");
+        }
+        document
+          .getElementById("nameAnimation")
+          .classList.remove("text-blur-in");
+        //   void document.getElementById("nameAnimation").offsetWidth;
+        document.getElementById("nameAnimation").classList.add("text-blur-in");
+        document
+          .getElementById("ageAnimation")
+          .classList.remove("text-blur-in");
+        //   void document.getElementById("ageAnimation").offsetWidth;
+        document.getElementById("ageAnimation").classList.add("text-blur-in");
+        document
+          .getElementById("titleAnimation")
+          .classList.remove("text-blur-in");
+        //   void document.getElementById("titleAnimation").offsetWidth;
+        document.getElementById("titleAnimation").classList.add("text-blur-in");
+      }
+    },
+    home() {
+      router.push("/");
     }
+  }
 };
 </script>
 
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Kanit:wght@300;600&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Kanit:wght@300;600&display=swap");
 
 .content {
-    height: 100vh;
-    width: 100vw;
+  height: 100vh;
+  width: 100vw;
 }
 
 .slide-in-bottom {
-    animation: slide-in-bottom 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+  animation: slide-in-bottom 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
 }
 
 .text-content {
-    font-size: 1.3em;
-    z-index: 3;
+  font-size: 1.3em;
+  z-index: 3;
+  margin-left: 3%;
 }
 
 @keyframes slide-in-bottom {
-    0% {
-        transform: translateY(1000px);
-        opacity: 0;
-    }
+  0% {
+    transform: translateY(100px);
+    opacity: 0;
+  }
 
-    100% {
-        transform: translateY(0);
-        opacity: 1;
-    }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
 }
 
 .title {
-    font-size: 3em;
-    z-index: 4;
-}
-
-.bg {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-}
-
-.bg-img {
-    object-fit: contain;
+  font-size: 3em;
+  z-index: 4;
+  position: relative;
+  margin-left: 3%;
 }
 
 .slide-in-left {
-    animation: slide-in-left 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+  animation: slide-in-left 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
 }
 
 @keyframes slide-in-left {
-    0% {
-        transform: translateX(-1000px);
-        opacity: 0;
-    }
+  0% {
+    transform: translateX(-1000px);
+    opacity: 0;
+  }
 
-    100% {
-        transform: translateX(0);
-        opacity: 1;
-    }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
 }
 
 .slide-in-right {
-    animation: slide-in-right 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+  animation: slide-in-right 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
 }
 
 @keyframes slide-in-right {
-    0% {
-        transform: translateX(1000px);
-        opacity: 0;
-    }
+  0% {
+    transform: translateX(1000px);
+    opacity: 0;
+  }
 
-    100% {
-        transform: translateX(0);
-        opacity: 1;
-    }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
 }
 
 * {
-    font-family: 'Kanit', sans-serif;
+  font-family: "Kanit", sans-serif;
+}
+.text-blur-out {
+  animation: text-blur-out 1.2s cubic-bezier(0.55, 0.085, 0.68, 0.53) both;
+}
+.text-blur-in {
+  animation: text-blur-out 0.5s cubic-bezier(0.55, 0.085, 0.68, 0.53) reverse
+    both;
+  z-index: 10;
+}
+@keyframes text-blur-out {
+  0% {
+    filter: blur(0.01);
+  }
+  100% {
+    filter: blur(12px) opacity(0%);
+  }
+}
+.navTab {
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, 0);
+}
+.bg-img {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
 }
 </style>
