@@ -48,7 +48,14 @@
           />
         </div>
       </div>
-      <div style="z-index:30;" class="navTab">
+      <div class="bg">
+        <img
+          :src="require('@/assets/' + dataPerson[start].bg)"
+          class="bg-img"
+          style="z-index:1"
+        />
+      </div>
+      <div style="z-index:30;" class="navTab" id="navTab">
         <b-icon-caret-left-fill
           style="cursor:pointer"
           scale="3"
@@ -77,15 +84,8 @@
         scrollable
         title="Person Info"
       >
-        <p id="data">{{ dataPerson[start]["description"] }}</p>
+        <p id="dataModal">{{ dataPerson[start]["description"] }}</p>
       </b-modal>
-      <div class="bg">
-        <img
-          :src="require('@/assets/' + dataPerson[start].bg)"
-          class="bg-img"
-          style="z-index:1"
-        />
-      </div>
     </b-container>
   </div>
 </template>
@@ -116,7 +116,12 @@ export default {
           //   console.log(this.start);
           this.start++;
           document.body.style.background = this.dataPerson[this.start].color;
-
+          if (this.start == 5) {
+            document.body.style.color = "white";
+            document.getElementById("dataModal").style.color = "black";
+          } else {
+            document.body.style.color = "black";
+          }
           document
             .getElementById("text-animation")
             .classList.remove("slide-in-bottom");
@@ -124,13 +129,6 @@ export default {
           document
             .getElementById("text-animation")
             .classList.add("slide-in-bottom");
-          if (this.start == 5) {
-            document.getElementById("title").style.color = "white";
-            document.getElementById("data").style.color = "white";
-            document.getElementById("modal-scrollable").style.color = "black";
-          } else {
-            document.body.style.color = "black";
-          }
           if (this.dataPerson[this.start].status == "l") {
             document.getElementById("dicutl").classList.remove("slide-in-left");
             void document.getElementById("dicutl").offsetWidth;
@@ -170,9 +168,8 @@ export default {
       if (this.start > 0) {
         this.start--;
         if (this.start == 5) {
-          document.getElementById("title").style.color = "white";
-          document.getElementById("data").style.color = "white";
-          document.getElementById("modal-scrollable").style.color = "black";
+          document.body.style.color = "white";
+          document.getElementById("dataModal").style.color = "black";
         } else {
           document.body.style.color = "black";
         }

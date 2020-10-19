@@ -10,6 +10,9 @@
       </h1>
     </div>
     <img class="hologram" src="@/assets/Congrats/hologram.png" />
+    <div id="particle-container">
+      <div v-for="n in 60" :key="n" class="particle"></div>
+    </div>
   </div>
 </template>
 <script>
@@ -27,6 +30,16 @@ export default {
 };
 </script>
 <style>
+#particle-container {
+  top: 0;
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  z-index: 3;
+}
+.particle {
+  border-radius: 50%;
+}
 body {
   width: 100vw;
   height: 100vh;
