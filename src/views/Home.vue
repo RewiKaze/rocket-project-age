@@ -8,7 +8,7 @@
       name="START!"
       icon="true"
       class="position-fixed"
-      style="z-index:100; top:85%; left:50%; transform: translate(-50%,-50%);"
+      style="z-index:1040; top:85%; left:50%; transform: translate(-50%,-50%);"
       v-on:click.native="next"
     ></cButton>
     <!-- Animation -->

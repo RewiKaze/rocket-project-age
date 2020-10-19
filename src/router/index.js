@@ -5,6 +5,8 @@ import home from "@/views/Home.vue";
 // import template from "@/views/Template.vue";
 import agePage from "@/views/Age.vue";
 import content from "@/views/Content.vue"
+import wow from "@/views/Wow.vue"
+import congrat from "@/views/Congrat.vue"
 Vue.use(VueRouter);
 
 const routes = [
@@ -18,7 +20,7 @@ const routes = [
     path: "/",
     // name: "Home",
     component: home,
-    meta: { transition: "fade" },
+    meta: { transition: "overlay-right" },
   },
   {
     path: "/age",
@@ -30,6 +32,16 @@ const routes = [
     path: "/content",
     component: content,
     meta: { transition: "overlay-right" }
+  },
+  {
+    path: "/wow",
+    component: wow,
+    meta: {transition : "overlay-right"}
+  },
+  {
+    path: "/congrat",
+    component: congrat,
+    meta: {transition : "overlay-right"}
   }
   // {
   //   path: "/about",
