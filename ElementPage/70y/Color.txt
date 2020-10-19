@@ -1,2 +1,0 @@
-bg color : 
-#efc197, #e066b4
