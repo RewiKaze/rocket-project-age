@@ -102,7 +102,7 @@ body {
 }
 
 .underline {
-  font-size: calc(14px + (80 - 14) * ((100vw - 320px) / (1600 - 320)));
+  font-size: 100px;
   height: 45vh;
   position: relative;
   -webkit-animation: roll-in-blurred-left 0.65s cubic-bezier(0.23, 1, 0.32, 1)

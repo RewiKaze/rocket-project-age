@@ -109,6 +109,7 @@ body {
 }
 
 .underline {
+  z-index: 5;
   font-size: 100px;
   height: 45vh;
   position: relative;
