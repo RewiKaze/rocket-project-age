@@ -1,6 +1,9 @@
 <template>
   <div class="page-input d-flex">
-    <b-container class="align-self-center align-items-center">
+    <b-container
+      class="align-self-center align-items-center"
+      style="z-index:10"
+    >
       <b-row>
         <b-col class="d-flex">
           <img src="../assets/Main/when.png" class="when mx-auto" />
@@ -13,8 +16,7 @@
             type="number"
             placeholder="Enter your age (1-100)"
             :number="true"
-            :max="100"
-            :min="1"
+            :state="inputStatus"
             class="input mx-auto"
           ></b-form-input>
         </b-col>
@@ -30,6 +32,9 @@
         </b-col>
       </b-row>
     </b-container>
+    <div id="particle-container">
+      <div v-for="n in 60" :key="n" class="particle"></div>
+    </div>
   </div>
 </template>
 <script>
@@ -54,22 +59,39 @@ export default {
       // } else {
       //   this.inputStatus = false;
       // }
-      if (this.numAge > 5) {
-        router.push({ path: "/content", query: { age: this.numAge } });
+      if (this.numAge > 0 && this.numAge <= 100) {
+        if (this.numAge > 5) {
+          router.push({ path: "/content", query: { age: this.numAge } });
+        } else if (this.numAge == null) {
+          this.inputStatus = false;
+        } else {
+          router.push("/congrat");
+        }
       } else {
-        router.push("/wow");
+        router.push("/congrat");
       }
     }
   },
   data() {
     return {
-      numAge: null
-      //   inputStatus: null
+      numAge: null,
+      inputStatus: null
     };
   }
 };
 </script>
 <style>
+#particle-container {
+  top: 0;
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  z-index: 3;
+}
+
+.particle {
+  border-radius: 50%;
+}
 @media screen and (max-width: 1920px) {
   .when {
     width: 685px;
