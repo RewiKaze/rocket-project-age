@@ -56,7 +56,7 @@ body {
   display: block;
 }
 .hope {
-  color: #060c43;
+  color: #060c43 !important;
   text-align: center;
   font-family: kanit;
   font-weight: 500;

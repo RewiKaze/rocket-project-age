@@ -52,7 +52,7 @@ body {
   display: block;
 }
 .hope {
-  color: white;
+  color: white !important;
   text-align: center;
   font-family: kanit;
   font-weight: 500;
