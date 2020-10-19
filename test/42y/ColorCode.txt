@@ -1,2 +1,0 @@
-Grandient : #c87bc5, #ca8c67
-Title : #964469,#c04c50
