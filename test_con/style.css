@@ -1,0 +1,38 @@
+body {
+	width: 100vw;
+	height: 100vh;
+	background: linear-gradient(#3E426B, #AC61A9);
+	font-family: kanit;
+}
+.congrat {
+	width: 100vw;
+	margin: auto;
+	display: block;
+}
+.hope {
+	color: white;
+	text-align: center;
+	font-family: kanit;
+	font-weight: 500;
+	font-size: 60px;
+	line-height: 1.5;
+}
+.hologram {
+	width: 60vw;
+	margin: auto;
+	display: block;
+	margin-top: -11.2%;
+}
+.btn-home {
+	font-family: kanit;
+	width: 10vw;
+	margin: auto;
+}
+.button {
+	padding-top: 10%;
+}
+.content {
+	position: absolute;
+	top: 50%;
+	left: 13%;
+}
