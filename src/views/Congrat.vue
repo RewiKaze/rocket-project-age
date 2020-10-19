@@ -1,25 +1,21 @@
 <template>
-  <div class="wow">
-    <img class="wow_line" src="@/assets/Wow/wow_line2.png" />
+  <div class="Congrat">
+    <img class="congrat" src="@/assets/Congrats/congrat.png" />
     <div class="container content">
       <h1 class="hope" style="z-index:10">
-        คุณสามารถ<br />สร้างความฝัน<br />อันยิ่งใหญ่ได้!!<br />
+        คุณอาจเป็นคนแรก<br />ที่ประสบความสำเร็จ !!
+        <br />
         <b-icon-house-door-fill @click="back" style="cursor:pointer">
         </b-icon-house-door-fill>
       </h1>
-      <!-- <div class="row button">
-        <button type="button" class="btn-home btn btn-outline-light">
-          HOME
-        </button>
-      </div> -->
     </div>
-    <img class="moon" src="@/assets/Wow/moon.png" />
+    <img class="hologram" src="@/assets/Congrats/hologram.png" />
   </div>
 </template>
 <script>
 import router from "@/router";
 export default {
-  name: "wow",
+  name: "congrat",
   methods: {
     back() {
       router.push("/");
@@ -37,37 +33,34 @@ body {
   background: linear-gradient(#3e426b, #ac61a9);
   font-family: kanit;
 }
-.wow_line {
+.congrat {
   width: 100vw;
   margin: auto;
   display: block;
 }
 .hope {
-  color: #060c43;
+  color: white;
   text-align: center;
   font-family: kanit;
   font-weight: 500;
   font-size: 3em;
   line-height: 1.5;
 }
-.moon {
+.hologram {
   position: absolute;
   bottom: 0;
   left: 50%;
   width: 50vw;
   transform: translate(-50%, 0);
-  /* margin: auto;
-  display: block;
-  margin-top: -6%; */
+}
+.content {
+  height: 100vh;
+  width: 100vw;
 }
 .hope {
   position: absolute;
   bottom: 5%;
   left: 50%;
   transform: translate(-50%, 0);
-}
-.content {
-  height: 100vh;
-  width: 100vw;
 }
 </style>
