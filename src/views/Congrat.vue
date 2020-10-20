@@ -1,5 +1,8 @@
 <template>
   <div class="Congrat">
+    <audio autoplay>
+      <source src="@/Congrat.mp3" type="audio/mpeg">
+    </audio>
     <img class="congrat" src="@/assets/Congrats/congrat.png" />
     <div class="container content">
       <p class="gettext3 m-auto underline text-center">IT's Your Turn ..!</p>

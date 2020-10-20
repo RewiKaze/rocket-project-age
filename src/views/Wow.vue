@@ -1,5 +1,8 @@
 <template>
   <div class="wow">
+    <audio autoplay>
+      <source src="@/wowsound.mp3" type="audio/mpeg">
+    </audio>
     <img class="wow_line" src="@/assets/Wow/wow_line2.png" />
     <p class="gettext2 m-auto underline text-center">IT's Your Turn ..!</p>
     <div class="container content">
