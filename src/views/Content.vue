@@ -372,7 +372,7 @@ export default {
   text-overflow: ellipsis;
   display: -webkit-box;
   -webkit-line-clamp: 3;
-  line-height: 50px;
+  line-height: 35px;
   /* number of lines to show */
   -webkit-box-orient: vertical;
   text-shadow: 3px 1px #222324, 1px 2px #222324, 1px 3px #222324;
