@@ -7,6 +7,7 @@ import agePage from "@/views/Age.vue";
 import content from "@/views/Content.vue"
 import wow from "@/views/Wow.vue"
 import congrat from "@/views/Congrat.vue"
+import wait from "@/views/Wait.vue"
 Vue.use(VueRouter);
 
 const routes = [
@@ -41,6 +42,11 @@ const routes = [
   {
     path: "/congrat",
     component: congrat,
+    meta: {transition : "overlay-right"}
+  },
+  {
+    path: "/wait",
+    component: wait,
     meta: {transition : "overlay-right"}
   }
   // {
