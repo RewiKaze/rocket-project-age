@@ -120,14 +120,16 @@ export default {
     document.getElementById("title").style.color = this.dataPerson[
       this.start
     ].tone;
-    for (let index = 0; index < this.max; index++) {
-      new Image().src = this.dataPerson[index];
-    }
   },
   mounted() {
     document.getElementById("title").style.color = this.dataPerson[
       this.start
     ].tone;
+    for (let index = 0; index < this.max; index++) {
+      new Image().src = require("@/assets/" + dataPerson[index].bg);
+      new Image().src = require("@/assets/" + dataPerson[index].person);
+      console.log("load" + index + " really?");
+    }
   },
   methods: {
     change() {
