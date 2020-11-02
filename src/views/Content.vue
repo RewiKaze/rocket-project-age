@@ -27,6 +27,7 @@
             class="setBottomleft"
             :src="require('@/assets/' + dataPerson[start].person)"
             width="100%"
+            rel="preload"
           />
           <!-- '{{ dataPerson[start].person }}' -->
         </div>
@@ -51,6 +52,7 @@
             class="setBottomright"
             :src="require('@/assets/' + dataPerson[start].person)"
             width="100%"
+            rel="preload"
           />
         </div>
       </div>
@@ -59,6 +61,7 @@
           :src="require('@/assets/' + dataPerson[start].bg)"
           class="bg-img"
           style="z-index:1"
+          rel="preload"
         />
       </div>
       <div style="z-index:30;" class="navTab" id="navTab">
@@ -117,6 +120,9 @@ export default {
     document.getElementById("title").style.color = this.dataPerson[
       this.start
     ].tone;
+    for (let index = 0; index < this.max; index++) {
+      new Image().src = this.dataPerson[index];
+    }
   },
   mounted() {
     document.getElementById("title").style.color = this.dataPerson[
