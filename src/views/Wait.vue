@@ -39,7 +39,21 @@
       <p></p>
       <p>พวกเราเชื่อว่าคุณก็เป็นอย่างพวกเขาได้นะ. . !</p>
       <!-- put many dicut here -->
-      <p>Click to Continue</p>
+      <p style="text-align:center; cursor:pointer;" @click="goToWow">
+        Click to Continue
+      </p>
+    </div>
+    <div id="final">
+      <img
+        :src="require('@/assets/50yV2/Charlie.png')"
+        style="position:absolute;bottom:0; left:0;"
+        width="250px"
+      />
+      <img
+        :src="require('@/assets/78y/grand.png')"
+        style="position:absolute;bottom:0; right:0;"
+        width="500px"
+      />
     </div>
   </div>
 </template>
@@ -71,6 +85,9 @@
   display: none;
 }
 .final {
+  display: none;
+}
+#final {
   display: none;
 }
 
@@ -120,10 +137,14 @@
 .particle {
   border-radius: 50%;
 }
+.fade-out {
+  animation: fade-in 1.2s cubic-bezier(0.39, 0.575, 0.565, 1) both reverse;
+}
 </style>
 
 <script>
 import button from "@/components/Button.vue";
+import router from "@/router";
 export default {
   name: "wait",
   data() {
@@ -152,6 +173,12 @@ export default {
     getName() {
       document.getElementById("second").style.display = "none";
       document.getElementById("third").style.display = "block";
+      document.getElementById("final").style.display = "block";
+      document.getElementById("third").classList.add("fade-in");
+      document.getElementById("final").classList.add("fade-in");
+    },
+    goToWow() {
+      router.push("/wow");
     }
   }
 };

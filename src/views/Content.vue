@@ -194,10 +194,10 @@ export default {
             document.getElementById("bg-reload").classList.add("fade-in");
           }
         } else {
-          router.push("/wow");
+          router.push("/wait");
         }
       } else {
-        router.push("/wow");
+        router.push("/wait");
       }
     },
     back() {
