@@ -66,7 +66,7 @@
 /* Animation */
 
 .text-focus-in {
-  animation: text-focus-in 1s cubic-bezier(0.55, 0.085, 0.68, 0.53) both;
+  animation: text-focus-in 1.2s cubic-bezier(0.55, 0.085, 0.68, 0.53) both;
 }
 .text-blur-out {
   animation: text-blur-out 1.2s cubic-bezier(0.55, 0.085, 0.68, 0.53) both;
@@ -114,33 +114,39 @@ export default {
   },
   methods: {
     startAnimation() {
+      // ปิด
       setTimeout(() => {
         document.getElementById("first").classList.remove("text-focus-in");
         document.getElementById("first").classList.add("text-blur-out");
       }, 2000);
+      // เปิด
       setTimeout(() => {
         document.getElementById("first").style.display = "none";
         document.getElementById("second").style.display = "block";
         document.getElementById("second").classList.add("fade-in");
-      }, 4200);
+      }, 3200);
+      // ปิด
       setTimeout(() => {
         document.getElementById("second").classList.remove("fade-in");
         document.getElementById("second").classList.add("text-blur-out");
-      }, 6000);
+      }, 8200);
+      // เปิด
       setTimeout(() => {
         document.getElementById("second").style.display = "none";
         document.getElementById("third").style.display = "block";
         document.getElementById("third").classList.add("fade-in");
-      }, 7200);
+      }, 9400);
+      // ปิด
       setTimeout(() => {
         document.getElementById("third").classList.remove("fade-in");
         document.getElementById("third").classList.add("text-blur-out");
-      }, 9000);
+      }, 14400);
+      // เปิด
       setTimeout(() => {
         document.getElementById("third").style.display = "none";
         document.getElementById("forth").style.display = "block";
         document.getElementById("forth").classList.add("fade-in");
-      }, 10200);
+      }, 15600);
       setTimeout(() => {
         router.push({
           path: "/content",
@@ -149,7 +155,7 @@ export default {
             continue: parseInt(this.$route.query.start),
           },
         });
-      }, 13000);
+      }, 20000);
     },
   },
 };
