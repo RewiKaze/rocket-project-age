@@ -1,7 +1,7 @@
 <template>
   <div class="content">
     <b-container fluid class="h-100 w-100">
-      <div class="title" id="title" style="margin-top:7%;">
+      <div class="title" id="title" style="margin-top: 7%">
         When
         <div class="d-inline text-blur-in" id="nameAnimation">
           {{ dataPerson[start]["name"] }}
@@ -20,7 +20,7 @@
           v-if="dataPerson[start].status == 'l'"
           class="col-4 align-self-end h-100 slide-in-left"
           id="dicutl"
-          style="z-index:3;"
+          style="z-index: 3"
         >
           <!-- <img src="../assets/42y/Alan Rickman.png" width="500px" /> -->
           <img
@@ -46,7 +46,7 @@
           v-if="dataPerson[start].status == 'r'"
           class="col-4 align-self-end h-100 slide-in-right"
           id="dicutr"
-          style="z-index:3;"
+          style="z-index: 3"
         >
           <img
             class="setBottomright"
@@ -60,13 +60,13 @@
         <img
           :src="require('@/assets/' + dataPerson[start].bg)"
           class="bg-img"
-          style="z-index:1"
+          style="z-index: 1"
           rel="preload"
         />
       </div>
-      <div style="z-index:30;" class="navTab" id="navTab">
+      <div style="z-index: 30" class="navTab" id="navTab">
         <b-icon-caret-left-fill
-          style="cursor:pointer"
+          style="cursor: pointer"
           scale="3"
           @click="back"
           v-if="start != 0"
@@ -74,12 +74,12 @@
         <b-icon-house-door-fill
           @click="home"
           scale="3"
-          style="cursor:pointer"
+          style="cursor: pointer"
           class="mr-5 ml-5"
         >
         </b-icon-house-door-fill>
         <b-icon-caret-right-fill
-          style="cursor:pointer"
+          style="cursor: pointer"
           scale="3"
           @click="change"
         ></b-icon-caret-right-fill>
@@ -88,7 +88,7 @@
       <!-- pop-up -->
       <b-modal
         id="modal-scrollable"
-        style="color:black"
+        style="color: black"
         ok-only
         scrollable
         title="Person Info"
@@ -109,13 +109,18 @@ export default {
       dataPerson: dataPerson,
       start: 0,
       max: 0,
-      limitAge: 0
+      limitAge: 0,
     };
   },
   created() {
+    if (this.$route.query.continue) {
+      this.start = this.$route.query.continue;
+      this.limitAge = 100;
+    }
     this.max = this.dataPerson.length;
+
     document.body.style.background = this.dataPerson[0].color;
-    this.limitAge = parseInt(this.$route.query.age);
+    this.limitAge = parseInt(this.$route.query.ageInput);
     document.body.style.color = "black";
     document.getElementById("title").style.color = this.dataPerson[
       this.start
@@ -128,16 +133,20 @@ export default {
     for (let index = 0; index < this.max; index++) {
       new Image().src = require("@/assets/" + dataPerson[index].bg);
       new Image().src = require("@/assets/" + dataPerson[index].person);
-      console.log("load" + index + " really?");
+      // console.log("load" + index + " really?");
     }
   },
   methods: {
     change() {
       if (this.start < 16) {
-        if (this.dataPerson[this.start + 1].age <= this.limitAge) {
+        if (
+          this.dataPerson[++this.start].age <= this.limitAge ||
+          this.limitAge == 100
+        ) {
+          // console.log(this.dataPerson[this.start].age);
+          // console.log(this.limitAge);
           if (this.start < this.max) {
-            //   console.log(this.start);
-            this.start++;
+            // this.start++;
             document.getElementById("title").style.color = this.dataPerson[
               this.start
             ].tone;
@@ -194,10 +203,10 @@ export default {
             document.getElementById("bg-reload").classList.add("fade-in");
           }
         } else {
-          router.push("/wait");
+          router.push({ path: "/wait", query: { start: this.start } });
         }
       } else {
-        router.push("/wait");
+        router.push("/name"); // go name
       }
     },
     back() {
@@ -251,8 +260,8 @@ export default {
     },
     home() {
       router.push("/");
-    }
-  }
+    },
+  },
 };
 </script>
 

@@ -3,16 +3,12 @@
     <div id="particle-container">
       <div v-for="n in 60" :key="n" class="particle"></div>
     </div>
-    <div class="wait alltext m-auto front">
-      <p class="text-center text-focus-in" id="first">แต่เดี๋ยวก่อน. . .</p>
-    </div>
-
     <!-- user put their name and click ok to text -->
-    <div class="name alltext m-auto front" style="width: 20em;" id="second">
+    <div class="name alltext m-auto front" style="width: 20em" id="first-name">
       <p class="text-center m-auto">เราขอรู้ชื่อของคุณหน่อย</p>
       <div
         class="input-group mb-4 mt-3"
-        style="width:40vw; margin-left:auto; margin-right:auto;"
+        style="width: 40vw; margin-left: auto; margin-right: auto"
       >
         <input
           type="text"
@@ -22,49 +18,50 @@
           aria-label="Recipient's username"
           aria-describedby="button-addon2"
           v-model="name"
-          style="w"
         />
       </div>
       <cButton
         name="GO!"
-        style="font-size:20px; height:40px"
+        style="font-size: 20px; height: 40px"
         class="center"
         v-on:click.native="getName"
       ></cButton>
     </div>
 
     <!-- Show thier name and Finally!!, Click to Continue -> Wow -->
-    <div class="final alltext m-auto front" id="third" style="width: 20em;">
+    <div
+      class="final alltext m-auto front"
+      id="second-name"
+      style="width: 20em"
+    >
       <p
         id="show"
-        style="text-align:center;font-size:2em;color:#dbbd6a;font-family: 'Chonburi', cursive !important;"
+        style="
+          text-align: center;
+          font-size: 2em;
+          color: #dbbd6a;
+          font-family: 'Chonburi', cursive !important;
+        "
       >
         สู้ๆนะคุณ {{ name }}
       </p>
-      <p style="font-size: 0.7em !important;text-align:center">
+      <p style="font-size: 0.7em !important; text-align: center">
         . .แม้ความสำเร็จอาจจะต้องใช้เวลา
       </p>
-      <p style="font-size: 0.7em !important;text-align:center">
+      <p style="font-size: 0.7em !important; text-align: center">
         แต่พวกเราเชื่อว่าคุณก็เป็นอย่างพวกเขาได้นะ. . !
       </p>
       <!-- put many dicut here -->
-      <p
-        style="text-align:center; cursor:pointer; font-size:0.5em;"
-        class="blink_me"
-        @click="goToWow"
-      >
-        Click to Continue
-      </p>
     </div>
     <div id="final">
       <img
         :src="require('@/assets/50yV2/Charlie.png')"
-        style="position:absolute;bottom:0; left:0;"
+        style="position: absolute; bottom: 0; left: 0"
         width="250px"
       />
       <img
         :src="require('@/assets/78y/grand.png')"
-        style="position:absolute;bottom:0; right:0;"
+        style="position: absolute; bottom: 0; right: 0"
         width="500px"
       />
     </div>
@@ -92,13 +89,9 @@
 }
 .wait {
   font-size: 50px;
-  display: block;
   color: white;
 }
-.name {
-  display: none;
-}
-.final {
+#second-name {
   display: none;
 }
 #final {
@@ -155,10 +148,6 @@
   animation: fade-in 1.2s cubic-bezier(0.39, 0.575, 0.565, 1) both reverse;
 }
 
-.blink_me {
-  animation: blinker 1s linear infinite;
-}
-
 @keyframes blinker {
   50% {
     opacity: 0;
@@ -173,14 +162,14 @@ export default {
   name: "wait",
   data() {
     return {
-      name: null
+      name: null,
     };
   },
   components: {
-    cButton: button
+    cButton: button,
   },
   mounted() {
-    this.startAnimation();
+    // this.startAnimation();
   },
   methods: {
     startAnimation() {
@@ -195,15 +184,15 @@ export default {
       }, 4200);
     },
     getName() {
-      document.getElementById("second").style.display = "none";
-      document.getElementById("third").style.display = "block";
+      document.getElementById("first-name").style.display = "none";
+      document.getElementById("second-name").style.display = "block";
       document.getElementById("final").style.display = "block";
-      document.getElementById("third").classList.add("fade-in");
+      document.getElementById("second-name").classList.add("fade-in");
       document.getElementById("final").classList.add("fade-in");
+      setTimeout(() => {
+        router.push("/wow");
+      }, 5000);
     },
-    goToWow() {
-      router.push("/wow");
-    }
-  }
+  },
 };
 </script>

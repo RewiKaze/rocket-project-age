@@ -2,7 +2,7 @@
   <div class="page-input d-flex">
     <b-container
       class="align-self-center align-items-center"
-      style="z-index:10"
+      style="z-index: 10"
     >
       <b-row>
         <b-col class="d-flex">
@@ -43,7 +43,7 @@ import Button from "@/components/Button.vue";
 export default {
   name: "agePage",
   components: {
-    cButton: Button
+    cButton: Button,
   },
   methods: {
     check() {
@@ -61,7 +61,7 @@ export default {
       // }
       if (this.numAge > 0 && this.numAge <= 100) {
         if (this.numAge > 5) {
-          router.push({ path: "/content", query: { age: this.numAge } });
+          router.push({ path: "/content", query: { ageInput: this.numAge } });
         } else if (this.numAge == null) {
           this.inputStatus = false;
         } else {
@@ -70,14 +70,14 @@ export default {
       } else {
         router.push("/congrat");
       }
-    }
+    },
   },
   data() {
     return {
       numAge: null,
-      inputStatus: null
+      inputStatus: null,
     };
-  }
+  },
 };
 </script>
 <style>

@@ -1,13 +1,12 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 import home from "@/views/Home.vue";
-// import cookie from "@/views/Cookie.vue";
-// import template from "@/views/Template.vue";
 import agePage from "@/views/Age.vue";
 import content from "@/views/Content.vue"
 import wow from "@/views/Wow.vue"
 import congrat from "@/views/Congrat.vue"
-import wait from "@/views/Wait.vue"
+import name from "@/views/Name.vue"
+import notEnd from "@/views/NotEnd.vue"
 Vue.use(VueRouter);
 
 const routes = [
@@ -46,8 +45,13 @@ const routes = [
   },
   {
     path: "/wait",
-    component: wait,
+    component: notEnd,
     meta: {transition : "overlay-right"}
+  },
+  {
+    path: "/name",
+    component: name,
+    meta: { transition: "overlay-right" }
   }
   // {
   //   path: "/about",
